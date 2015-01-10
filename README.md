@@ -27,3 +27,33 @@ go () {
   shouldbee/go go $@
 }
 ```
+
+## godepのインストール
+
+VagrantでDockerホストにつなぎ、go getする。godepの実行ファイルは/gopath/binに置かれる。
+
+```
+go get github.com/tools/godep
+```
+
+## godepで依存関係定義ファイルを作る
+
+依存するライブラリをgo getしておく。ライブラリは/gopath/srcに置かれる。
+
+```
+go get ./...
+```
+
+godep saveを実行すると、/vagrant/Godepsに依存関係を定義したファイルができる。
+
+```
+godep save
+```
+
+## 依存関係定義ファイルをもとにgo getする
+
+以下のコマンドを実行すると、/gopath/srcに依存するパッケージが入る。
+
+```
+godep restore
+```
