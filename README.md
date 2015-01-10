@@ -1,1 +1,1 @@
-# Docker + Vagrant + Godep
+# Docker + Godep Example
