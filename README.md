@@ -13,3 +13,17 @@ Dockerホスト | Dockerコンテナ
 /gopath/pkg     | /gopath/pkg
 /vagrant    | /gopath/src/my-project
 /vagrant/main.go | /gopath/src/my-project/main.go
+
+## .bashrcの説明
+
+```
+go () {
+  sudo docker run -it --rm \
+  --net host \
+  -v /gopath:/gopath \                 # $GOPATHに当たる部分をマウントする
+  -v /vagrant:/gopath/src/my-project \ # 自分のプロジェクトも$GOPATH/src配下に置く必要があるのでマウント
+  -w /gopath/src/my-project \          # ワーキングディレクトリの設定
+  -e GOPATH=/gopath \                  # $GOPATHを指定する
+  shouldbee/go go $@
+}
+```
