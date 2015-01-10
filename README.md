@@ -57,3 +57,9 @@ godep save
 ```
 godep restore
 ```
+
+## main.goを実行する
+
+```
+godep go run main.go 
+```
